@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, Pressable, StyleSheet } from "react-native";
-import { auth } from "../firebase/config";
+import { auth, db } from "../firebase/config";
 
 function Login(props) {
   const [email, setEmail] = useState("");

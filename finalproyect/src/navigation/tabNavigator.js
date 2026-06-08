@@ -1,14 +1,10 @@
-import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
 import Login from "../screens/login";
 import Register from "../screens/register";
-import NavegacionTab from "./NavegacionTab";
+import TabNavigator from "./tabNavigator";
 
 const Stack = createNativeStackNavigator();
 
-function tabNavigation() {
+function tabNavigatior(){
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -24,7 +20,7 @@ function tabNavigation() {
 
         <Stack.Screen
           name="NavegacionTab"
-          component={NavegacionTab}
+          component={TabNavigator}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
@@ -32,4 +28,4 @@ function tabNavigation() {
   );
 }
 
-export default tabNavigatior
+export default TabNavigator;

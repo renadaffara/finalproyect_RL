@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, Pressable, StyleSheet } from "react-native";
-import { auth, db } from "firebase/config";
+import { auth, db } from "../firebase/config";
 
 function Register(props) {
   const [username, setUsername] = useState("");
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     backgroundColor: "black",
     padding: 10,
     width: "100%",
-    alignItems: "center",
+    alignItems: "center", 
     borderRadius: 5
   },
   buttonText: {
@@ -113,4 +113,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Register;  
+export default Register; 

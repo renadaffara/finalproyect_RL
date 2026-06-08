@@ -6,7 +6,7 @@ function PostForm(props) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Nuevo posteo</Text>
+      <Text style={styles.title}> new post </Text>
 
       <TextInput
         style={styles.input}
@@ -55,4 +55,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default PostForm;
+export default PostForm; 

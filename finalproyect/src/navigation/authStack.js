@@ -12,7 +12,7 @@ const Stack = createNativeStackNavigator();
 
 function AuthStack() {
 
-    return(
+    return( 
 
         <NavigationContainer>
 
