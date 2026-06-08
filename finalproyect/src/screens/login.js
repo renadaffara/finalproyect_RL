@@ -61,16 +61,15 @@ function Login(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    width: "100%",
     justifyContent: "center",
     alignItems: "center",
-    padding: 20
   },
   title: {
     fontSize: 30,
     marginBottom: 20
   },
   input: {
-    width: "100%",
     borderWidth: 1,
     padding: 10,
     marginBottom: 10,
@@ -79,7 +78,6 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: "black",
     padding: 10,
-    width: "100%",
     alignItems: "center",
     borderRadius: 5
   },
@@ -88,10 +86,12 @@ const styles = StyleSheet.create({
   },
   error: {
     color: "red",
-    marginTop: 10
+    marginTop: 10,
+    width: 250,
   },
   link: {
-    marginTop: 20
+    marginTop: 20,
+    width: 200,
   }
 });
 

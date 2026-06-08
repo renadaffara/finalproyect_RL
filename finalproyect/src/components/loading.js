@@ -12,14 +12,16 @@ function Loading(props) {
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
     flex: 1,
-   justifyContent: "center",
-    alignItems: "center"
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#fff"
   },
+
   text: {
-    marginTop: 10,
-    fontSize: 16
+    marginTop: 15,
+    fontSize: 16,
+    color: "#555"
   }
 });
 

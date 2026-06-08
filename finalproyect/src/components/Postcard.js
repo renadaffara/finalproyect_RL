@@ -42,16 +42,13 @@ function PostCard(props) {
       <Text style={styles.likes}>
         Likes: {likes ? likes.length : 0}
       </Text>
-      <Pressable onPress={() => navigation.navigate("comments", { id: post.id })}>
-        <Text style={styles.button}>Comentar</Text>
-      </Pressable>
       <Pressable style={styles.button} onPress={() => likePost()}>
         <Text style={styles.buttonText}>Me gusta</Text>
       </Pressable>
 
       <Pressable
         style={styles.button}
-        onPress={() => navigation.navigate("Comments", { id: post.id })}
+        onPress={() => navigation.navigate("comments", { id: post.id })}
       >
         <Text style={styles.buttonText}>Comentar</Text>
       </Pressable>
@@ -61,32 +58,54 @@ function PostCard(props) {
 
 const styles = StyleSheet.create({
   card: {
-    borderWidth: 1,
-    marginBottom: 15,
-    padding: 10
+    backgroundColor: "#fff",
+    borderRadius: 12,
+    padding: 15,
+    marginBottom: 20,
+    width: "92%",
+    alignSelf: "center",
+    shadowColor: "#000",
+    shadowOpacity: 0.1,
+    shadowRadius: 6,
+    elevation: 3
   },
+
   owner: {
     fontSize: 16,
-    marginBottom: 5
+    fontWeight: "bold",
+    marginBottom: 8
   },
+
   description: {
-    marginBottom: 10
+    fontSize: 15,
+    marginBottom: 15,
+    color: "#444"
   },
+
   image: {
-    height: 200,
-    marginBottom: 10
+    width: "100%",
+    height: 220,
+    borderRadius: 10,
+    marginBottom: 12
   },
+
   likes: {
-    marginBottom: 10
+    marginBottom: 12,
+    color: "#666"
   },
+
   button: {
-    borderWidth: 1,
-    padding: 10,
+    backgroundColor: "#000",
+    paddingVertical: 12,
+    borderRadius: 8,
     alignItems: "center",
     marginBottom: 10
   },
+
   buttonText: {
-    fontSize: 16
+    color: "#fff",
+    fontSize: 15,
+    fontWeight: "bold"
   }
 });
 

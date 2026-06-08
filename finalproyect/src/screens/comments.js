@@ -98,49 +98,28 @@ function Comments(props) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 10
+  card: {
+    backgroundColor: "#fff",
+    padding: 15,
+    borderRadius: 12,
+    marginBottom: 12,
+    width: "92%",
+    alignSelf: "center",
+    shadowColor: "#000",
+    shadowOpacity: 0.08,
+    shadowRadius: 4,
+    elevation: 2
   },
-  title: {
-    fontSize: 24,
-    marginBottom: 10
-  },
-  input: {
-    width: "100%",
-    borderWidth: 1,
-    padding: 10,
-    marginBottom: 10,
-    borderRadius: 5
-  },
-  button: {
-    borderWidth: 1,
-    padding: 10,
-    alignItems: "center",
-    marginBottom: 10
-  },
-  buttonText: {
-    fontSize: 16
-  },
-  error: {
-    color: "red",
-    marginBottom: 10
-  },
-  flatlist: {
-    width: "100%",
-    flex: 1
-  },
-  commentCard: {
-    borderWidth: 1,
-    padding: 10,
-    marginBottom: 10
-  },
+
   owner: {
     fontSize: 14,
-    marginBottom: 5
+    fontWeight: "bold",
+    marginBottom: 6
   },
-  commentText: {
-    fontSize: 16
+
+  text: {
+    fontSize: 15,
+    color: "#444"
   }
 });
 

@@ -28,31 +28,44 @@ function PostForm(props) {
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%"
+    width: "100%",
+    alignItems: "center",
+    padding: 20
   },
+
   title: {
-    fontSize: 24,
-    marginBottom: 10
+    fontSize: 28,
+    fontWeight: "bold",
+    marginBottom: 20
   },
+
   input: {
     width: "100%",
-    borderWidth: 1,
-    padding: 10,
-    marginBottom: 10,
-    borderRadius: 5
-  },
-  button: {
-    borderWidth: 1,
-    padding: 10,
-    alignItems: "center"
-  },
-  buttonText: {
+    backgroundColor: "#f2f2f2",
+    padding: 15,
+    borderRadius: 10,
+    marginBottom: 15,
     fontSize: 16
   },
+
+  button: {
+    backgroundColor: "#000",
+    width: "100%",
+    padding: 15,
+    borderRadius: 10,
+    alignItems: "center"
+  },
+
+  buttonText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold"
+  },
+
   error: {
     color: "red",
-    marginTop: 10
+    marginTop: 15
   }
-});
+}); 
 
 export default PostForm; 

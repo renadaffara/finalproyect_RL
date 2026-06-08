@@ -88,7 +88,6 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   input: {
-    width: "100%",
     borderWidth: 1,
     padding: 10,
     marginBottom: 10,
@@ -97,7 +96,6 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: "black",
     padding: 10,
-    width: "100%",
     alignItems: "center", 
     borderRadius: 5
   },
@@ -109,7 +107,8 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   link: {
-    marginTop: 20
+    marginTop: 20,
+    width: 200,
   }
 });
 
