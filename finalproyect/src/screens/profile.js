@@ -11,23 +11,23 @@ function Profile(props) {
   useEffect(() => {
     if (auth.currentUser) {
       setEmail(auth.currentUser.email);
-    }
 
-    db.collection("posts")
-      .where("owner", "==", auth.currentUser.email)
-      .onSnapshot(docs => {
-        let posts = [];
+      db.collection("posts")
+        .where("owner", "==", auth.currentUser.email)
+        .onSnapshot(docs => {
+          let posts = [];
 
-        docs.forEach(doc => {
-          posts.push({
-            id: doc.id,
-            data: doc.data()
+          docs.forEach(doc => {
+            posts.push({
+              id: doc.id,
+              data: doc.data()
+            });
           });
-        });
 
-        setMisPosts(posts);
-        setLoading(false);
-      });
+          setMisPosts(posts);
+          setLoading(false);
+        });
+    }
   }, []);
 
   function logout() {
