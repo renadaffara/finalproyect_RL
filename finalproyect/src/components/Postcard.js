@@ -42,13 +42,14 @@ function PostCard(props) {
       <Text style={styles.likes}>
         Likes: {likes ? likes.length : 0}
       </Text>
+
       <Pressable style={styles.button} onPress={() => likePost()}>
         <Text style={styles.buttonText}>Me gusta</Text>
       </Pressable>
 
       <Pressable
         style={styles.button}
-        onPress={() => navigation.navigate("comments", { id: post.id })}
+        onPress={() => navigation.navigate("Comments", { id: post.id })}
       >
         <Text style={styles.buttonText}>Comentar</Text>
       </Pressable>

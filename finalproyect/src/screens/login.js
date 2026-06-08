@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, Pressable, StyleSheet } from "react-native";
-import { auth, db } from "../firebase/config";
+import { auth } from "../firebase/config";
 
 function Login(props) {
   const [email, setEmail] = useState("");
@@ -64,12 +64,14 @@ const styles = StyleSheet.create({
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
+    padding: 20
   },
   title: {
     fontSize: 30,
     marginBottom: 20
   },
   input: {
+    width: "100%",
     borderWidth: 1,
     padding: 10,
     marginBottom: 10,
@@ -78,6 +80,7 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: "black",
     padding: 10,
+    width: "100%",
     alignItems: "center",
     borderRadius: 5
   },
@@ -87,11 +90,11 @@ const styles = StyleSheet.create({
   error: {
     color: "red",
     marginTop: 10,
-    width: 250,
+    width: 250
   },
   link: {
     marginTop: 20,
-    width: 200,
+    width: 200
   }
 });
 

@@ -88,6 +88,7 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   input: {
+    width: "100%",
     borderWidth: 1,
     padding: 10,
     marginBottom: 10,
@@ -96,7 +97,8 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: "black",
     padding: 10,
-    alignItems: "center", 
+    width: "100%",
+    alignItems: "center",
     borderRadius: 5
   },
   buttonText: {
@@ -108,8 +110,8 @@ const styles = StyleSheet.create({
   },
   link: {
     marginTop: 20,
-    width: 200,
+    width: 200
   }
 });
 
-export default Register; 
+export default Register;
