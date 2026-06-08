@@ -42,11 +42,9 @@ function PostCard(props) {
       <Text style={styles.likes}>
         Likes: {likes ? likes.length : 0}
       </Text>
-
-<<<<<<< HEAD
       <Pressable onPress={() => navigation.navigate("comments", { id: post.id })}>
         <Text style={styles.button}>Comentar</Text>
-=======
+      </Pressable>
       <Pressable style={styles.button} onPress={() => likePost()}>
         <Text style={styles.buttonText}>Me gusta</Text>
       </Pressable>
@@ -56,7 +54,6 @@ function PostCard(props) {
         onPress={() => navigation.navigate("Comments", { id: post.id })}
       >
         <Text style={styles.buttonText}>Comentar</Text>
->>>>>>> 35f5b9d2bd6c0aa2177cbf6dddc99314f77a7939
       </Pressable>
     </View>
   );

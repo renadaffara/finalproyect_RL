@@ -1,30 +1,23 @@
 import Login from "../screens/login";
 import Register from "../screens/register";
-import TabNavigator from "./tabNavigator";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
-function tabNavigatior(){
+function TabNavigator(){
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen 
+      <Tab.Navigator>
+        <Tab.Screen 
           name="Login"
           component={Login}
         />  
 
-        <Stack.Screen
+        <Tab.Screen
           name="Register"
           component={Register}
         />
 
-        <Stack.Screen
-          name="NavegacionTab"
-          component={TabNavigator}
-          options={{ headerShown: false }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+      </Tab.Navigator>
   );
 }
 
