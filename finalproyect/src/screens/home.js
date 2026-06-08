@@ -8,8 +8,9 @@ function Home(props) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    db.collection("posts").onSnapshot(
-      docs => {
+    db.collection("posts")
+      .orderBy("createdAt", "desc")
+      .onSnapshot(docs => {
         let posts = [];
 
         docs.forEach(doc => {
@@ -19,13 +20,9 @@ function Home(props) {
           });
         });
 
-        posts.sort((a, b) => b.data.createdAt - a.data.createdAt);
-
         setPosteos(posts);
         setLoading(false);
-      },
-      error => console.log(error)
-    );
+      });
   }, []);
 
   return (
