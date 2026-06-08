@@ -2,12 +2,13 @@ import React from "react";
 import { View, Text, Pressable, Image, StyleSheet } from "react-native";
 
 function PostCard(props) {
-  const { post, navigation } = props;
+  const { post, navigation, onLike } = props;
   const { owner, description, likes, image } = post.data;
 
   return (
     <View style={styles.card}>
       <Text style={styles.owner}>{owner}</Text>
+
       <Text style={styles.description}>{description}</Text>
 
       {image ? (
@@ -22,8 +23,15 @@ function PostCard(props) {
         Likes: {likes ? likes.length : 0}
       </Text>
 
-      <Pressable onPress={() => navigation.navigate("Comments", { id: post.id })}>
-        <Text style={styles.button}>Comentar</Text>
+      <Pressable style={styles.button} onPress={() => onLike(post.id, likes)}>
+        <Text style={styles.buttonText}>Me gusta</Text>
+      </Pressable>
+
+      <Pressable
+        style={styles.button}
+        onPress={() => navigation.navigate("Comments", { id: post.id })}
+      >
+        <Text style={styles.buttonText}>Comentar</Text>
       </Pressable>
     </View>
   );
@@ -50,7 +58,13 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   button: {
-    color: "blue"
+    borderWidth: 1,
+    padding: 10,
+    alignItems: "center",
+    marginBottom: 10
+  },
+  buttonText: {
+    fontSize: 16
   }
 });
 
