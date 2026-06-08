@@ -1,9 +1,29 @@
 import React from "react";
 import { View, Text, Pressable, Image, StyleSheet } from "react-native";
+import { auth, db } from "../firebase/config";
+import firebase from "firebase";
 
 function PostCard(props) {
-  const { post, navigation, onLike } = props;
+  const { post, navigation } = props;
   const { owner, description, likes, image } = post.data;
+
+  function likePost() {
+    if (likes && likes.indexOf(auth.currentUser.email) !== -1) {
+      db.collection("posts")
+        .doc(post.id)
+        .update({
+          likes: firebase.firestore.FieldValue.arrayRemove(auth.currentUser.email)
+        })
+        .then(() => {})
+    } else {
+      db.collection("posts")
+        .doc(post.id)
+        .update({
+          likes: firebase.firestore.FieldValue.arrayUnion(auth.currentUser.email)
+        })
+        .then(() => {})
+    }
+  }
 
   return (
     <View style={styles.card}>
@@ -23,7 +43,7 @@ function PostCard(props) {
         Likes: {likes ? likes.length : 0}
       </Text>
 
-      <Pressable style={styles.button} onPress={() => onLike(post.id, likes)}>
+      <Pressable style={styles.button} onPress={() => likePost()}>
         <Text style={styles.buttonText}>Me gusta</Text>
       </Pressable>
 

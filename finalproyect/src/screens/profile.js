@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, FlatList, Pressable, StyleSheet } from "react-native";
+import { View, Text, FlatList, ActivityIndicator, Pressable, StyleSheet } from "react-native";
 import { auth, db } from "../firebase/config";
 import PostCard from "../components/PostCard";
-import Loading from "../components/Loading";
 
 function Profile(props) {
   const [misPosts, setMisPosts] = useState([]);
@@ -49,7 +48,7 @@ function Profile(props) {
       <Text style={styles.subtitle}>Mis posteos</Text>
 
       {loading ? (
-        <Loading text="Cargando perfil..." />
+        <ActivityIndicator size="large" color="purple" />
       ) : (
         <FlatList
           style={styles.flatlist}
