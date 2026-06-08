@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, FlatList, ActivityIndicator, Pressable, StyleSheet } from "react-native";
 import { auth, db } from "../firebase/config";
-import PostCard from "../components/PostCard";
+import PostCard from "../components/Postcard";
 
 function Profile(props) {
   const [misPosts, setMisPosts] = useState([]);
