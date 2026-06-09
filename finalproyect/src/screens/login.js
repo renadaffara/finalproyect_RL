@@ -71,7 +71,6 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   input: {
-    width: "100%",
     borderWidth: 1,
     padding: 10,
     marginBottom: 10,
@@ -80,12 +79,12 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: "black",
     padding: 10,
-    width: "100%",
     alignItems: "center",
     borderRadius: 5
   },
   buttonText: {
-    color: "white"
+    color: "white",
+    width: 100,
   },
   error: {
     color: "red",

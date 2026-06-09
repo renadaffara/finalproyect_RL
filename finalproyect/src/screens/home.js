@@ -51,7 +51,8 @@ function Home(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10
+    width: 300,
+    backgroundColor: "#c43232",
   },
   title: {
     fontSize: 24,
