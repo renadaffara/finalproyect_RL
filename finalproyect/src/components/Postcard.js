@@ -1,28 +1,47 @@
 import React from "react";
 import { View, Text, Pressable, Image, StyleSheet } from "react-native";
 import { auth, db } from "../firebase/config";
-import firebase from "firebase";
 
 function PostCard(props) {
   const { post, navigation } = props;
   const { owner, description, likes, image } = post.data;
 
+  let userLike = false;
+
+  if (likes) {
+    likes.forEach(like => {
+      if (like === auth.currentUser.email) {
+        userLike = true;
+      }
+    });
+  }
+
   function likePost() {
-    if (likes && likes.indexOf(auth.currentUser.email) !== -1) {
-      db.collection("posts")
-        .doc(post.id)
-        .update({
-          likes: firebase.firestore.FieldValue.arrayRemove(auth.currentUser.email)
-        })
-        .then(() => {})
-    } else {
-      db.collection("posts")
-        .doc(post.id)
-        .update({
-          likes: firebase.firestore.FieldValue.arrayUnion(auth.currentUser.email)
-        })
-        .then(() => {})
+    db.collection("posts")
+      .doc(post.id)
+      .update({
+        likes: likes ? [...likes, auth.currentUser.email] : [auth.currentUser.email]
+      })
+      .then(() => {})
+  }
+
+  function dislikePost() {
+    let newLikes = [];
+
+    if (likes) {
+      likes.forEach(like => {
+        if (like !== auth.currentUser.email) {
+          newLikes.push(like);
+        }
+      });
     }
+
+    db.collection("posts")
+      .doc(post.id)
+      .update({
+        likes: newLikes
+      })
+      .then(() => {})
   }
 
   return (
@@ -43,9 +62,15 @@ function PostCard(props) {
         Likes: {likes ? likes.length : 0}
       </Text>
 
-      <Pressable style={styles.button} onPress={() => likePost()}>
-        <Text style={styles.buttonText}>Me gusta</Text>
-      </Pressable>
+      {userLike ? (
+        <Pressable style={styles.button} onPress={() => dislikePost()}>
+          <Text style={styles.buttonText}>Quitar like</Text>
+        </Pressable>
+      ) : (
+        <Pressable style={styles.button} onPress={() => likePost()}>
+          <Text style={styles.buttonText}>Me gusta</Text>
+        </Pressable>
+      )}
 
       <Pressable
         style={styles.button}
@@ -59,54 +84,32 @@ function PostCard(props) {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: "#fff",
-    borderRadius: 12,
-    padding: 15,
-    marginBottom: 20,
-    width: "92%",
-    alignSelf: "center",
-    shadowColor: "#000",
-    shadowOpacity: 0.1,
-    shadowRadius: 6,
-    elevation: 3
+    borderWidth: 1,
+    padding: 10,
+    marginBottom: 10
   },
-
   owner: {
     fontSize: 16,
-    fontWeight: "bold",
-    marginBottom: 8
+    marginBottom: 5
   },
-
   description: {
-    fontSize: 15,
-    marginBottom: 15,
-    color: "#444"
+    marginBottom: 10
   },
-
   image: {
-    width: "100%",
-    height: 220,
-    borderRadius: 10,
-    marginBottom: 12
+    height: 200,
+    marginBottom: 10
   },
-
   likes: {
-    marginBottom: 12,
-    color: "#666"
+    marginBottom: 10
   },
-
   button: {
-    backgroundColor: "#000",
-    paddingVertical: 12,
-    borderRadius: 8,
+    borderWidth: 1,
+    padding: 10,
     alignItems: "center",
     marginBottom: 10
   },
-
   buttonText: {
-    color: "#fff",
-    fontSize: 15,
-    fontWeight: "bold"
+    fontSize: 16
   }
 });
 

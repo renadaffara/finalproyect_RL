@@ -6,7 +6,7 @@ function PostForm(props) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}> new post </Text>
+      <Text style={styles.title}>Nuevo posteo</Text>
 
       <TextInput
         style={styles.input}
@@ -28,44 +28,30 @@ function PostForm(props) {
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
-    alignItems: "center",
-    padding: 20
+    width: "100%"
   },
-
   title: {
-    fontSize: 28,
-    fontWeight: "bold",
-    marginBottom: 20
+    fontSize: 24,
+    marginBottom: 10
   },
-
   input: {
     width: "100%",
-    backgroundColor: "#f2f2f2",
-    padding: 15,
-    borderRadius: 10,
-    marginBottom: 15,
-    fontSize: 16
+    borderWidth: 1,
+    padding: 10,
+    marginBottom: 10
   },
-
   button: {
-    backgroundColor: "#000",
-    width: "100%",
-    padding: 15,
-    borderRadius: 10,
+    borderWidth: 1,
+    padding: 10,
     alignItems: "center"
   },
-
   buttonText: {
-    color: "#fff",
-    fontSize: 16,
-    fontWeight: "bold"
+    fontSize: 16
   },
-
   error: {
     color: "red",
-    marginTop: 15
+    marginTop: 10
   }
-}); 
+});
 
-export default PostForm; 
+export default PostForm;
