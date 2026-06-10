@@ -6,6 +6,10 @@ import PostCard from "../components/Postcard";
 function Home(props) {
   const [posteos, setPosteos] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  console.log("AAAAAAAAAA");
+  
 
   useEffect(() => {
     db.collection("posts")
@@ -30,7 +34,9 @@ function Home(props) {
       <Text style={styles.title}>Home</Text>
 
       {loading ? (
-        <ActivityIndicator size="large" color="purple" />
+        <ActivityIndicator size="large" color="#ff66b2" />
+      ) : error ? (
+        <Text style={{ color: 'red' }}>{error}</Text>
       ) : (
         <FlatList
           style={styles.flatlist}
@@ -51,12 +57,14 @@ function Home(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: 300,
-    backgroundColor: "#c43232",
+    width: "100%",
+    backgroundColor: '#fff0f6',
+    padding: 12
   },
   title: {
     fontSize: 24,
-    marginBottom: 10
+    marginBottom: 10,
+    color: '#3b0a1e'
   },
   flatlist: {
     width: "100%",

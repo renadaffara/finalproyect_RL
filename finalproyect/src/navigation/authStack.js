@@ -10,7 +10,6 @@ const Stack = createNativeStackNavigator();
 function AuthStack() {
   return (
     <Stack.Navigator>
-
       <Stack.Screen
         name="Login"
         component={Login}
@@ -22,13 +21,12 @@ function AuthStack() {
         component={Register}
         options={{ headerShown: false }}
       />
-
-      <Stack.Screen
+   <Stack.Screen
         name="TabNavigator"
         component={TabNavigator}
         options={{ headerShown: false }}
       />
-
+   
     </Stack.Navigator>
   );
 }

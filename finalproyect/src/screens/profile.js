@@ -48,7 +48,7 @@ function Profile(props) {
       <Text style={styles.subtitle}>Mis posteos</Text>
 
       {loading ? (
-        <ActivityIndicator size="large" color="purple" />
+        <ActivityIndicator size="large" color="#ff66b2" />
       ) : (
         <FlatList
           style={styles.flatlist}
@@ -99,10 +99,13 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
     alignItems: "center",
-    marginTop: 10
+    marginTop: 10,
+    backgroundColor: '#ff66b2',
+    borderRadius: 6
   },
   buttonText: {
-    fontSize: 16
+    fontSize: 16,
+    color: '#ffffff'
   }
 });
 

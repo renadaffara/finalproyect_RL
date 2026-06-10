@@ -7,7 +7,7 @@ function Login(props) {
   const [pass, setPass] = useState("");
   const [loginError, setLoginError] = useState("");
 
-  function login(email, pass) {
+    function login(email, pass) {
     if (email === "" || pass === "") {
       setLoginError("Todos los campos son obligatorios");
       return;
@@ -74,13 +74,14 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
     marginBottom: 10,
-    borderRadius: 5
+    borderRadius: 8,
+    borderColor: '#ff4da6'
   },
   button: {
-    backgroundColor: "black",
+    backgroundColor: '#ff66b2',
     padding: 10,
     alignItems: "center",
-    borderRadius: 5
+    borderRadius: 8
   },
   buttonText: {
     color: "white",

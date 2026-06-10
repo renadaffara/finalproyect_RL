@@ -8,7 +8,6 @@ const Stack = createNativeStackNavigator();
 
 function HomeStack() {
   return (
-    <View style={styles.container}>
 
     <Stack.Navigator>
       <Stack.Screen
@@ -22,7 +21,6 @@ function HomeStack() {
         component={Comments}
         />
     </Stack.Navigator>
-        </View>
   );
 }
 
