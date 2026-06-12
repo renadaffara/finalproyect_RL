@@ -17,7 +17,7 @@ function HomeStack() {
         />
 
       <Stack.Screen
-        name="comments"
+        name="Comments"
         component={Comments}
         />
     </Stack.Navigator>

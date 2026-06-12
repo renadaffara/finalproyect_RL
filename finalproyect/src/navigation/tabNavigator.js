@@ -1,6 +1,6 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Home from "../screens/home.js";
+import HomeStack from "./homeStack.js";
 import Profile from "../screens/profile.js";
 import NewPost from "../screens/createPost.js";
 import { FontAwesome5, Entypo, AntDesign } from '@expo/vector-icons';
@@ -16,11 +16,11 @@ function TabNavigator() {
                     headerShown: false
                 }}
             >
-                <Tab.Screen
+               <Tab.Screen
                     name="Home"
-                    component={Home}
+                    component={HomeStack}
                     options={{ tabBarIcon: () => <FontAwesome5 name="home" size={24} color="black" /> }}
-                />
+                />          
                 <Tab.Screen
                     name="CreatePost"
                     component={NewPost}
