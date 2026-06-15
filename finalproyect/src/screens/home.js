@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, FlatList, ActivityIndicator, StyleSheet } from "react-native";
 import { db } from "../firebase/config";
-import PostCard from "../components/Postcard";
+import Postcard from "../components/Postcard";
 
 function Home(props) {
   const [posteos, setPosteos] = useState([]);
   const [loading, setLoading] = useState(true);
-  
-
-  console.log("AAAAAAAAAA");
-  
 
   useEffect(() => {
     db.collection("posts")
@@ -35,15 +31,13 @@ function Home(props) {
 
       {loading ? (
         <ActivityIndicator size="large" color="#ff66b2" />
-      ) : error ? (
-        <Text style={{ color: 'red' }}>{error}</Text>
       ) : (
         <FlatList
           style={styles.flatlist}
           data={posteos}
           keyExtractor={item => item.id.toString()}
           renderItem={({ item }) => (
-            <PostCard
+            <Postcard
               post={item}
               navigation={props.navigation}
             />
@@ -57,14 +51,11 @@ function Home(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: "100%",
-    backgroundColor: '#fff0f6',
-    padding: 12
+    padding: 10
   },
   title: {
     fontSize: 24,
-    marginBottom: 10,
-    color: '#3b0a1e'
+    marginBottom: 10
   },
   flatlist: {
     width: "100%",
@@ -72,4 +63,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Home; 
+export default Home;

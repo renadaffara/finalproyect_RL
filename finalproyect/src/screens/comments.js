@@ -9,6 +9,7 @@ import {
   StyleSheet
 } from "react-native";
 import { auth, db } from "../firebase/config";
+import CommentCard from "../components/CommentCard";
 
 function Comments(props) {
   const { id } = props.route.params;
@@ -23,13 +24,11 @@ function Comments(props) {
       let commentsArray = [];
 
       docs.forEach(doc => {
-        let comentario = {
-          id: doc.id,
-          data: doc.data()
-        };
-
-        if (comentario.data.postId === id) {
-          commentsArray.push(comentario);
+        if (doc.data().postId === id) {
+          commentsArray.push({
+            id: doc.id,
+            data: doc.data()
+          });
         }
       });
 
@@ -67,30 +66,24 @@ function Comments(props) {
       <TextInput
         style={styles.input}
         placeholder="Escribí un comentario"
-        onChangeText={text => setComment(text)}
+        onChangeText={(text) => setComment(text)}
         value={comment}
       />
 
-      <Pressable style={styles.button} onPress={() => addComment()}>
+      <Pressable style={styles.button} onPress={addComment}>
         <Text style={styles.buttonText}>Comentar</Text>
       </Pressable>
 
-      {error !== "" ? (
-        <Text style={styles.error}>{error}</Text>
-      ) : null}
+      {error !== "" ? <Text style={styles.error}>{error}</Text> : null}
 
       {loading ? (
-        <ActivityIndicator size="large" color="#ff66b2" />
+        <ActivityIndicator size="large" />
       ) : (
         <FlatList
-          style={styles.flatlist}
           data={comments}
-          keyExtractor={item => item.id.toString()}
+          keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
-            <View style={styles.commentCard}>
-              <Text style={styles.owner}>{item.data.owner}</Text>
-              <Text style={styles.commentText}>{item.data.text}</Text>
-            </View>
+            <CommentCard comment={item} />
           )}
         />
       )}
@@ -108,20 +101,15 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   input: {
-    width: "100%",
     borderWidth: 1,
     padding: 10,
-    marginBottom: 10,
-    borderRadius: 8,
-    borderColor: "#ff4da6"
+    marginBottom: 10
   },
   button: {
     borderWidth: 1,
     padding: 10,
     alignItems: "center",
-    marginBottom: 10,
-    backgroundColor: "#ff66b2",
-    borderRadius: 8
+    marginBottom: 10
   },
   buttonText: {
     fontSize: 16
@@ -129,22 +117,6 @@ const styles = StyleSheet.create({
   error: {
     color: "red",
     marginBottom: 10
-  },
-  flatlist: {
-    width: "100%",
-    flex: 1
-  },
-  commentCard: {
-    borderWidth: 1,
-    padding: 10,
-    marginBottom: 10
-  },
-  owner: {
-    fontSize: 14,
-    marginBottom: 5
-  },
-  commentText: {
-    fontSize: 16
   }
 });
 

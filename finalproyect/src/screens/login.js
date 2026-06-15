@@ -14,9 +14,7 @@ function Login(props) {
     }
 
     auth.signInWithEmailAndPassword(email, pass)
-      .then(response => {
-        props.navigation.navigate("TabNavigator");
-      })
+      .then(response => {})
       .catch(error => {
         setLoginError("Credenciales inválidas.");
       });

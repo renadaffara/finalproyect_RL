@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, Pressable, StyleSheet } from "react-native";
 import { auth, db } from "../firebase/config";
+import { useState, useEffect } from "react";
 
 function Register(props) {
   const [username, setUsername] = useState("");
@@ -16,8 +17,7 @@ function Register(props) {
 
     auth.createUserWithEmailAndPassword(email, pass)
       .then(response => {
-        db.collection("users")
-          .add({
+        db.collection("users").add({
             username: username,
             email: email
           })

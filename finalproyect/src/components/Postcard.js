@@ -2,38 +2,58 @@ import React, { useEffect, useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { auth, db } from "../../firebase/config";
 
-export default function Post(props) {
+function Postcard(props) {
+
   const postId = props.info.id;
-  const likesFromPost = props.info.data.likes ? props.info.data.likes : [];
+
+  const likesFromPost = props.info.data.likes
+    ? props.info.data.likes
+    : [];
+
   const [likes, setLikes] = useState(likesFromPost);
 
   useEffect(() => {
-    setLikes(props.info.data.likes ? props.info.data.likes : []);
+
+    setLikes(
+      props.info.data.likes
+        ? props.info.data.likes
+        : []
+    );
+
   }, [props.info.data.likes]);
 
   let estaLikeado = false;
 
   likes.forEach(like => {
+
     if (like === auth.currentUser.email) {
       estaLikeado = true;
     }
+
   });
 
   function manejarLikes() {
+
     let updatedLikes = [];
 
     if (estaLikeado) {
+
       likes.forEach(like => {
+
         if (like !== auth.currentUser.email) {
           updatedLikes.push(like);
         }
+
       });
+
     } else {
+
       likes.forEach(like => {
         updatedLikes.push(like);
       });
 
       updatedLikes.push(auth.currentUser.email);
+
     }
 
     setLikes(updatedLikes);
@@ -44,21 +64,27 @@ export default function Post(props) {
         likes: updatedLikes
       })
       .then(() => {});
+
   }
 
   function manejarComentario() {
-    props.navigation.navigate("Comments", {
-      id: postId
-    });
+
+    props.navigation.navigate(
+      "Comments",
+      {
+        id: postId
+      }
+    );
+
   }
 
   return (
 
     <View style={styles.card}>
-      <View style={styles.info}>
-        <Text style={styles.owner}>{props.info.data.owner}</Text>
-        <Text style={styles.date}>{props.info.data.createdAt}</Text>
-      </View>
+
+      <Text style={styles.owner}>
+        {props.info.data.owner}
+      </Text>
 
       <Text style={styles.description}>
         {props.info.data.description}
@@ -67,11 +93,14 @@ export default function Post(props) {
       <View style={styles.linea}></View>
 
       <View style={styles.botones}>
+
         <Pressable
           style={styles.button}
           onPress={manejarComentario}
         >
-          <Text style={styles.buttonText}>Comentar</Text>
+          <Text style={styles.buttonText}>
+            Comentar
+          </Text>
         </Pressable>
 
         <Pressable
@@ -79,12 +108,18 @@ export default function Post(props) {
           onPress={manejarLikes}
         >
           <Text style={styles.buttonText}>
-            {estaLikeado ? "Quitar like" : "Me gusta"}
+            {estaLikeado
+              ? "Quitar like"
+              : "Me gusta"}
           </Text>
         </Pressable>
+
       </View>
 
-      <Text style={styles.likes}>Likes: {likes.length}</Text>
+      <Text style={styles.likes}>
+        Likes: {likes.length}
+      </Text>
+
     </View>
 
   );
@@ -92,29 +127,27 @@ export default function Post(props) {
 }
 
 const styles = StyleSheet.create({
+
   card: {
     borderWidth: 1,
     padding: 10,
     marginBottom: 10
   },
-  info: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+
+  owner: {
+    fontSize: 16,
     marginBottom: 10
   },
-  owner: {
-    fontSize: 16
-  },
-  date: {
-    fontSize: 14
-  },
+
   description: {
     marginBottom: 10
   },
+
   linea: {
     borderWidth: 1,
     marginBottom: 10
   },
+
   botones: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -131,7 +164,11 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 16
   },
+
   likes: {
     fontSize: 16
   }
+
 });
+
+export default Postcard; 
