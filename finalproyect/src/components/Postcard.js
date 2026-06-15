@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import { auth, db } from "../../firebase/config";
+import { auth, db } from "../firebase/config";
 
-export default function Post(props) {
-  const postId = props.info.id;
-  const likesFromPost = props.info.data.likes ? props.info.data.likes : [];
+function Postcard(props) {
+  const postId = props.post.id;
+  const likesFromPost = props.post.data.likes ? props.post.data.likes : [];
   const [likes, setLikes] = useState(likesFromPost);
 
   useEffect(() => {
-    setLikes(props.info.data.likes ? props.info.data.likes : []);
-  }, [props.info.data.likes]);
+    setLikes(props.post.data.likes ? props.post.data.likes : []);
+  }, [props.post.data.likes]);
 
   let estaLikeado = false;
 
@@ -53,18 +53,12 @@ export default function Post(props) {
   }
 
   return (
-
     <View style={styles.card}>
-      <View style={styles.info}>
-        <Text style={styles.owner}>{props.info.data.owner}</Text>
-        <Text style={styles.date}>{props.info.data.createdAt}</Text>
-      </View>
+      <Text style={styles.owner}>{props.post.data.owner}</Text>
 
       <Text style={styles.description}>
-        {props.info.data.description}
+        {props.post.data.description}
       </Text>
-
-      <View style={styles.linea}></View>
 
       <View style={styles.botones}>
         <Pressable
@@ -86,9 +80,7 @@ export default function Post(props) {
 
       <Text style={styles.likes}>Likes: {likes.length}</Text>
     </View>
-
   );
-
 }
 
 const styles = StyleSheet.create({
@@ -97,22 +89,11 @@ const styles = StyleSheet.create({
     padding: 10,
     marginBottom: 10
   },
-  info: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: 10
-  },
   owner: {
-    fontSize: 16
-  },
-  date: {
-    fontSize: 14
+    fontSize: 16,
+    marginBottom: 10
   },
   description: {
-    marginBottom: 10
-  },
-  linea: {
-    borderWidth: 1,
     marginBottom: 10
   },
   botones: {
@@ -120,14 +101,12 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     marginBottom: 10
   },
-
   button: {
     borderWidth: 1,
     padding: 10,
     alignItems: "center",
     width: "48%"
   },
-
   buttonText: {
     fontSize: 16
   },
@@ -135,3 +114,5 @@ const styles = StyleSheet.create({
     fontSize: 16
   }
 });
+
+export default Postcard;
