@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import { auth, db } from "../../firebase/config";
+import { auth, db } from "../firebase/config";
 
 function Postcard(props) {
 
@@ -79,7 +79,6 @@ function Postcard(props) {
   }
 
   return (
-
     <View style={styles.card}>
 
       <Text style={styles.owner}>
@@ -87,10 +86,8 @@ function Postcard(props) {
       </Text>
 
       <Text style={styles.description}>
-        {props.info.data.description}
+        {props.post.data.description}
       </Text>
-
-      <View style={styles.linea}></View>
 
       <View style={styles.botones}>
 
@@ -121,9 +118,7 @@ function Postcard(props) {
       </Text>
 
     </View>
-
   );
-
 }
 
 const styles = StyleSheet.create({
@@ -153,14 +148,12 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     marginBottom: 10
   },
-
   button: {
     borderWidth: 1,
     padding: 10,
     alignItems: "center",
     width: "48%"
   },
-
   buttonText: {
     fontSize: 16
   },
