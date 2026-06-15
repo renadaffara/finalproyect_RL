@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, FlatList, ActivityIndicator, Pressable, StyleSheet } from "react-native";
 import { auth, db } from "../firebase/config";
-import PostCard from "../components/Postcard";
+import PostCard from "../components/PostCard";
 
 function Profile(props) {
   const [misPosts, setMisPosts] = useState([]);
@@ -31,11 +31,8 @@ function Profile(props) {
   }, []);
 
   function logout() {
-    auth.signOut()
-      .then(() => {
-        props.navigation.navigate("Login");
-      })
-      .catch(error => console.log(error));
+    auth.signOut();
+    props.navigation.navigate("Login");
   }
 
   return (
@@ -100,12 +97,12 @@ const styles = StyleSheet.create({
     padding: 10,
     alignItems: "center",
     marginTop: 10,
-    backgroundColor: '#ff66b2',
+    backgroundColor: "#ff66b2",
     borderRadius: 6
   },
   buttonText: {
     fontSize: 16,
-    color: '#ffffff'
+    color: "#ffffff"
   }
 });
 

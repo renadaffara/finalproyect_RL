@@ -25,11 +25,11 @@ function Register(props) {
             props.navigation.navigate("Login");
           })
           .catch(error => {
-            setRegisterError(error.message);
+            setRegisterError("Fallo al guardar los datos del usuario.");
           });
       })
       .catch(error => {
-        setRegisterError(error.message);
+        setRegisterError("Fallo en el registro.");
       });
   }
 
@@ -88,21 +88,23 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   input: {
+    width: "100%",
     borderWidth: 1,
     padding: 10,
     marginBottom: 10,
     borderRadius: 8,
-    borderColor: '#ff4da6'
+    borderColor: "#ff4da6"
   },
   button: {
-    backgroundColor: '#ff66b2',
+    backgroundColor: "#ff66b2",
     padding: 10,
+    width: "100%",
     alignItems: "center",
-    borderRadius: 8,
+    borderRadius: 8
   },
   buttonText: {
     color: "white",
-    width:100,
+    width: 100
   },
   error: {
     color: "red",

@@ -24,8 +24,7 @@ function NewPost(props) {
         setError("");
         props.navigation.navigate("Home");
       })
-      .catch(e => {
-        console.log(e);
+      .catch(() => {
         setError("No se pudo crear el posteo");
       });
   }
@@ -71,7 +70,7 @@ const styles = StyleSheet.create({
     borderRadius: 5
   },
   button: {
-    backgroundColor: '#ff66b2',
+    backgroundColor: "#ff66b2",
     padding: 10,
     width: "100%",
     alignItems: "center",

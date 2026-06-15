@@ -6,7 +6,7 @@ import PostCard from "../components/Postcard";
 function Home(props) {
   const [posteos, setPosteos] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  
 
   console.log("AAAAAAAAAA");
   

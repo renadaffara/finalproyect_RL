@@ -55,8 +55,7 @@ function Comments(props) {
         setComment("");
         setError("");
       })
-      .catch(e => {
-        console.log(e);
+      .catch(() => {
         setError("No se pudo agregar el comentario");
       });
   }
@@ -76,7 +75,9 @@ function Comments(props) {
         <Text style={styles.buttonText}>Comentar</Text>
       </Pressable>
 
-      {error !== "" ? <Text style={styles.error}>{error}</Text> : null}
+      {error !== "" ? (
+        <Text style={styles.error}>{error}</Text>
+      ) : null}
 
       {loading ? (
         <ActivityIndicator size="large" color="#ff66b2" />
@@ -112,14 +113,14 @@ const styles = StyleSheet.create({
     padding: 10,
     marginBottom: 10,
     borderRadius: 8,
-    borderColor: '#ff4da6'
+    borderColor: "#ff4da6"
   },
   button: {
     borderWidth: 1,
     padding: 10,
     alignItems: "center",
     marginBottom: 10,
-    backgroundColor: '#ff66b2',
+    backgroundColor: "#ff66b2",
     borderRadius: 8
   },
   buttonText: {

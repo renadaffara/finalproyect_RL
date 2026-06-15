@@ -1,83 +1,89 @@
-import React from "react";
-import { View, Text, Pressable, Image, StyleSheet } from "react-native";
-import { auth, db } from "../firebase/config";
+import React, { useEffect, useState } from "react";
+import { Pressable, StyleSheet, Text, View } from "react-native";
+import { auth, db } from "../../firebase/config";
 
-function PostCard(props) {
-  const { post, navigation } = props;
-  const { owner, description, likes, image } = post.data;
+export default function Post(props) {
+  const postId = props.info.id;
+  const likesFromPost = props.info.data.likes ? props.info.data.likes : [];
+  const [likes, setLikes] = useState(likesFromPost);
 
-  let userLike = false;
+  useEffect(() => {
+    setLikes(props.info.data.likes ? props.info.data.likes : []);
+  }, [props.info.data.likes]);
 
-  if (likes) {
-    likes.forEach(like => {
-      if (like === auth.currentUser.email) {
-        userLike = true;
-      }
-    });
-  }
+  let estaLikeado = false;
 
-  function likePost() {
-    db.collection("posts")
-      .doc(post.id)
-      .update({
-        likes: likes ? [...likes, auth.currentUser.email] : [auth.currentUser.email]
-      })
-      .then(() => {})
-  }
+  likes.forEach(like => {
+    if (like === auth.currentUser.email) {
+      estaLikeado = true;
+    }
+  });
 
-  function dislikePost() {
-    let newLikes = [];
+  function manejarLikes() {
+    let updatedLikes = [];
 
-    if (likes) {
+    if (estaLikeado) {
       likes.forEach(like => {
         if (like !== auth.currentUser.email) {
-          newLikes.push(like);
+          updatedLikes.push(like);
         }
       });
+    } else {
+      likes.forEach(like => {
+        updatedLikes.push(like);
+      });
+
+      updatedLikes.push(auth.currentUser.email);
     }
 
+    setLikes(updatedLikes);
+
     db.collection("posts")
-      .doc(post.id)
+      .doc(postId)
       .update({
-        likes: newLikes
+        likes: updatedLikes
       })
-      .then(() => {})
+      .then(() => {});
+  }
+
+  function manejarComentario() {
+    props.navigation.navigate("Comments", {
+      id: postId
+    });
   }
 
   return (
     <View style={styles.card}>
-      <Text style={styles.owner}>{owner}</Text>
+      <View style={styles.info}>
+        <Text style={styles.owner}>{props.info.data.owner}</Text>
+        <Text style={styles.date}>{props.info.data.createdAt}</Text>
+      </View>
 
-      <Text style={styles.description}>{description}</Text>
-
-      {image ? (
-        <Image
-          style={styles.image}
-          source={{ uri: image }}
-          resizeMode="contain"
-        />
-      ) : null}
-
-      <Text style={styles.likes}>
-        Likes: {likes ? likes.length : 0}
+      <Text style={styles.description}>
+        {props.info.data.description}
       </Text>
 
-      {userLike ? (
-        <Pressable style={styles.button} onPress={() => dislikePost()}>
-          <Text style={styles.buttonText}>Quitar like</Text>
-        </Pressable>
-      ) : (
-        <Pressable style={styles.button} onPress={() => likePost()}>
-          <Text style={styles.buttonText}>Me gusta</Text>
-        </Pressable>
-      )}
+      <View style={styles.linea}></View>
 
-      <Pressable
-        style={styles.button}
-        onPress={() => navigation.navigate("Comments", { id: post.id })}
-      >
-        <Text style={styles.buttonText}>Comentar</Text>
-      </Pressable>
+      <View style={styles.botones}>
+        <Pressable
+          style={styles.button}
+          onPress={manejarComentario}
+        >
+          <Text style={styles.buttonText}>Comentar</Text>
+        </Pressable>
+
+        <Pressable
+          style={styles.button}
+          onPress={manejarLikes}
+        >
+          <Text style={styles.buttonText}>
+            {estaLikeado ? "Quitar like" : "Me gusta"}
+          </Text>
+        </Pressable>
+      </View>
+
+      <Text style={styles.likes}>Likes: {likes.length}</Text>
     </View>
   );
 }
@@ -88,29 +94,39 @@ const styles = StyleSheet.create({
     padding: 10,
     marginBottom: 10
   },
+  info: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 10
+  },
   owner: {
-    fontSize: 16,
-    marginBottom: 5
+    fontSize: 16
+  },
+  date: {
+    fontSize: 14
   },
   description: {
     marginBottom: 10
   },
-  image: {
-    height: 200,
+  linea: {
+    borderWidth: 1,
     marginBottom: 10
   },
-  likes: {
+  botones: {
+    flexDirection: "row",
+    justifyContent: "space-between",
     marginBottom: 10
   },
   button: {
     borderWidth: 1,
     padding: 10,
     alignItems: "center",
-    marginBottom: 10
+    width: "48%"
   },
   buttonText: {
     fontSize: 16
+  },
+  likes: {
+    fontSize: 16
   }
 });
-
-export default PostCard;
