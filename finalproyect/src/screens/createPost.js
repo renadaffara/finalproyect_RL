@@ -26,7 +26,8 @@ function NewPost(props) {
       .add({
         owner: auth.currentUser.email,
         description: description,
-        likes: []
+        likes: [],
+        createdAt: Date.now()
       })
       .then(() => {
 

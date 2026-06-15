@@ -4,23 +4,23 @@ import { auth, db } from "../firebase/config";
 
 function Postcard(props) {
 
-  const postId = props.info.id;
+  const postId = props.post.id;
 
-  const likesFromPost = props.info.data.likes
-    ? props.info.data.likes
-    : [];
-
-  const [likes, setLikes] = useState(likesFromPost);
+  const [likes, setLikes] = useState(
+    props.post.data.likes
+      ? props.post.data.likes
+      : []
+  );
 
   useEffect(() => {
 
     setLikes(
-      props.info.data.likes
-        ? props.info.data.likes
+      props.post.data.likes
+        ? props.post.data.likes
         : []
     );
 
-  }, [props.info.data.likes]);
+  }, [props.post.data.likes]);
 
   let estaLikeado = false;
 
@@ -62,8 +62,7 @@ function Postcard(props) {
       .doc(postId)
       .update({
         likes: updatedLikes
-      })
-      .then(() => {});
+      });
 
   }
 
@@ -79,10 +78,11 @@ function Postcard(props) {
   }
 
   return (
+
     <View style={styles.card}>
 
       <Text style={styles.owner}>
-        {props.info.data.owner}
+        {props.post.data.owner}
       </Text>
 
       <Text style={styles.description}>
@@ -105,9 +105,7 @@ function Postcard(props) {
           onPress={manejarLikes}
         >
           <Text style={styles.buttonText}>
-            {estaLikeado
-              ? "Quitar like"
-              : "Me gusta"}
+            {estaLikeado ? "Quitar like" : "Me gusta"}
           </Text>
         </Pressable>
 
@@ -118,7 +116,9 @@ function Postcard(props) {
       </Text>
 
     </View>
+
   );
+
 }
 
 const styles = StyleSheet.create({
@@ -138,22 +138,19 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
 
-  linea: {
-    borderWidth: 1,
-    marginBottom: 10
-  },
-
   botones: {
     flexDirection: "row",
     justifyContent: "space-between",
     marginBottom: 10
   },
+
   button: {
     borderWidth: 1,
     padding: 10,
     alignItems: "center",
     width: "48%"
   },
+
   buttonText: {
     fontSize: 16
   },
@@ -164,4 +161,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default Postcard; 
+export default Postcard;

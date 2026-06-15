@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
 import { View, Text, FlatList, ActivityIndicator, Pressable, StyleSheet } from "react-native";
 import { auth, db } from "../firebase/config";
@@ -125,5 +124,4 @@ const styles = StyleSheet.create({
 });
 
 export default Profile;
-=======
->>>>>>> 5043fdae2dd8342b29d1371c4a95db874748a278
+
