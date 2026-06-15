@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { View, Text, FlatList, ActivityIndicator, Pressable, StyleSheet } from "react-native";
 import { auth, db } from "../firebase/config";
@@ -124,4 +125,5 @@ const styles = StyleSheet.create({
 });
 
 export default Profile;
+
 

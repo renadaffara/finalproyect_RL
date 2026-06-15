@@ -4,63 +4,82 @@ import { db } from "../firebase/config";
 import Postcard from "../components/Postcard";
 
 function Home(props) {
+
   const [posteos, setPosteos] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+
     db.collection("posts")
-      .orderBy("createdAt", "desc")
       .onSnapshot(docs => {
+
         let posts = [];
 
         docs.forEach(doc => {
+
           posts.push({
             id: doc.id,
             data: doc.data()
           });
+
         });
 
         setPosteos(posts);
         setLoading(false);
+
       });
+
   }, []);
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Home</Text>
 
-      {loading ? (
-        <ActivityIndicator size="large" color="#ff66b2" />
-      ) : (
+    <View style={styles.container}>
+
+      <Text style={styles.title}>
+        Home
+      </Text>
+
+      {
+        loading
+        ?
+        <ActivityIndicator size="large" />
+        :
         <FlatList
           style={styles.flatlist}
           data={posteos}
           keyExtractor={item => item.id.toString()}
           renderItem={({ item }) => (
             <Postcard
-              post={item}
+              info={item}
               navigation={props.navigation}
             />
           )}
         />
-      )}
+      }
+
     </View>
+
   );
+
 }
 
 const styles = StyleSheet.create({
+
   container: {
     flex: 1,
     padding: 10
   },
+
   title: {
     fontSize: 24,
     marginBottom: 10
   },
+
   flatlist: {
     width: "100%",
     flex: 1
   }
+
 });
 
 export default Home;
