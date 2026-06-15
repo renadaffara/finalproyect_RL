@@ -53,6 +53,7 @@ export default function Post(props) {
   }
 
   return (
+
     <View style={styles.card}>
       <View style={styles.info}>
         <Text style={styles.owner}>{props.info.data.owner}</Text>
@@ -85,7 +86,9 @@ export default function Post(props) {
 
       <Text style={styles.likes}>Likes: {likes.length}</Text>
     </View>
+
   );
+
 }
 
 const styles = StyleSheet.create({
@@ -117,12 +120,14 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     marginBottom: 10
   },
+
   button: {
     borderWidth: 1,
     padding: 10,
     alignItems: "center",
     width: "48%"
   },
+
   buttonText: {
     fontSize: 16
   },
