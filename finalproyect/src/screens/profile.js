@@ -163,4 +163,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default Profile;
+export default Profile; 
