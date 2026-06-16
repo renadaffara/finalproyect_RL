@@ -1,8 +1,13 @@
-
 import React, { useEffect, useState } from "react";
-import { View, Text, FlatList, ActivityIndicator, Pressable, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  ActivityIndicator,
+  Pressable,
+  StyleSheet
+} from "react-native";
 import { auth, db } from "../firebase/config";
-import Postcard from "../components/Postcard";
 
 function Profile(props) {
 
@@ -66,10 +71,25 @@ function Profile(props) {
           data={misPosts}
           keyExtractor={item => item.id.toString()}
           renderItem={({ item }) => (
-            <Postcard
-              post={item}
-              navigation={props.navigation}
-            />
+            <View style={styles.post}>
+
+              <Text style={styles.postOwner}>
+                {item.data.owner}
+              </Text>
+
+              <Text style={styles.postDescription}>
+                {item.data.description}
+              </Text>
+
+              <Text style={styles.postLikes}>
+                Likes: {
+                  item.data.likes
+                    ? item.data.likes.length
+                    : 0
+                }
+              </Text>
+
+            </View>
           )}
         />
       }
@@ -111,6 +131,25 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
 
+  post: {
+    borderWidth: 1,
+    padding: 10,
+    marginBottom: 10
+  },
+
+  postOwner: {
+    fontSize: 16,
+    marginBottom: 5
+  },
+
+  postDescription: {
+    marginBottom: 5
+  },
+
+  postLikes: {
+    fontSize: 14
+  },
+
   button: {
     borderWidth: 1,
     padding: 10,
@@ -125,5 +164,3 @@ const styles = StyleSheet.create({
 });
 
 export default Profile;
-
-
