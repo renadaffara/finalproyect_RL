@@ -49,10 +49,10 @@ function Home(props) {
           data={posteos}
           keyExtractor={item => item.id.toString()}
           renderItem={({ item }) => (
-            <Postcard
-              info={item}
-              navigation={props.navigation}
-            />
+        <Postcard
+    post={item}
+    navigation={props.navigation}
+  />
           )}
         />
       }

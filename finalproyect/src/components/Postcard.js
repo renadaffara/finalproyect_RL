@@ -3,6 +3,8 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import { auth, db } from "../firebase/config";
 
 function Postcard(props) {
+    console.log("POST:", props.post);
+  console.log("USER:", auth.currentUser);
 
   const postId = props.post.id;
 

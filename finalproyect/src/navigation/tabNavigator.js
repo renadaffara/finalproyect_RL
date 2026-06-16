@@ -1,7 +1,8 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import HomeStack, { ProfileStack } from "../navigation/homeStack";
+import HomeStack from "../navigation/homeStack";
+import Profile from "../screens/profile";
 
 import NewPost from "../screens/createPost";
 
@@ -49,7 +50,7 @@ function TabNavigator() {
 
       <Tab.Screen
         name="Profile"
-        component={ProfileStack}
+        component={Profile}
         options={{
           tabBarIcon: () =>
             <AntDesign
