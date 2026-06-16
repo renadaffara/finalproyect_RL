@@ -1,11 +1,8 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
 import HomeStack from "../navigation/homeStack";
 import Profile from "../screens/profile";
-
 import NewPost from "../screens/createPost";
-
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import Entypo from '@expo/vector-icons/Entypo';
 import AntDesign from '@expo/vector-icons/AntDesign';

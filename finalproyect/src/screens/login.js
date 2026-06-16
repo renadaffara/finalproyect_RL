@@ -1,11 +1,5 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  Pressable,
-  StyleSheet
-} from "react-native";
+import { View, Text, TextInput,  Pressable,  StyleSheet } from "react-native";
 import { auth } from "../firebase/config";
 
 function Login(props) {

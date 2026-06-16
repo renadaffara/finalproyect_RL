@@ -3,23 +3,18 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import { auth, db } from "../firebase/config";
 
 function Postcard(props) {
-    console.log("POST:", props.post);
+  console.log("POST:", props.post);
   console.log("USER:", auth.currentUser);
 
   const postId = props.post.id;
 
   const [likes, setLikes] = useState(
-    props.post.data.likes
-      ? props.post.data.likes
-      : []
+    props.post.data.likes ? props.post.data.likes : []
   );
 
   useEffect(() => {
 
-    setLikes(
-      props.post.data.likes
-        ? props.post.data.likes
-        : []
+    setLikes( props.post.data.likes ? props.post.data.likes : []
     );
 
   }, [props.post.data.likes]);
