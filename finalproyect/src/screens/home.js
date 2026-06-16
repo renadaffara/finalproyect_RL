@@ -8,28 +8,29 @@ function Home(props) {
   const [posteos, setPosteos] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+useEffect(() => {
 
-    db.collection("posts")
-      .onSnapshot(docs => {
+  db.collection("posts")
+    .orderBy("createdAt", "desc")
+    .onSnapshot(docs => {
 
-        let posts = [];
+      let posts = [];
 
-        docs.forEach(doc => {
+      docs.forEach(doc => {
 
-          posts.push({
-            id: doc.id,
-            data: doc.data()
-          });
-
+        posts.push({
+          id: doc.id,
+          data: doc.data()
         });
-
-        setPosteos(posts);
-        setLoading(false);
 
       });
 
-  }, []);
+      setPosteos(posts);
+      setLoading(false);
+
+    });
+
+}, []);
 
   return (
 
